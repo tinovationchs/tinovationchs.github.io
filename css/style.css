@@ -541,6 +541,9 @@ div#main-nav {
   float: initial !important;
 }
 
+.link:hover {
+    color:#1abc9c !important;
+}
 
 /* Projects */
 
@@ -554,8 +557,6 @@ div#main-nav {
 }
 
  
-
-
 
 
 /* Services
