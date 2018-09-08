@@ -542,6 +542,19 @@ div#main-nav {
 }
 
 
+/* Projects */
+
+#projects {
+    padding: 60px 0px;
+    background: black;
+}
+#projects h2{
+  color: #fff;
+
+}
+
+ 
+
 
 
 
