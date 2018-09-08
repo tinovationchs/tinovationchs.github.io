@@ -428,7 +428,7 @@ p {
 .top_cont_outer {
     background: #ED5441;
     position: relative; 
-    background: url('http://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/img/main2.jpg') no-repeat;
+    background: url('https://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/img/main2.jpg') no-repeat;
 	background-size: cover; 
 }
 
@@ -1688,7 +1688,7 @@ padding:80px 0 60px;
     height: 40px;
     margin-top: 40px;
     opacity: 0;
-    background: url(http://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/css/images/zoom.png);
+    background: url(https://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/css/images/zoom.png);
     background-size: 40px 40px;
     transition: all 0.3s ease 0.1s;
     -moz-transition: all 0.3s ease 0.2s;
@@ -1769,7 +1769,7 @@ padding:80px 0 60px;
 }
 
 #project-page-button-fullscreen li a {
-    background: url(http://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/css/images/close.png) no-repeat #fff;
+    background: url(https://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/css/images/close.png) no-repeat #fff;
     background-size: 50px 50px;
     width: 50px;
     height: 50px;
@@ -1824,14 +1824,14 @@ padding:80px 0 60px;
 	
 	
 .project-image-slider .bx-wrapper .bx-next {
-    background: url("http://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/css/images/project_slider_right.png") no-repeat;
+    background: url("https://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/css/images/project_slider_right.png") no-repeat;
     background-size: 35px 65px;
     opacity: 0.3;
     right: -90px;
 }
 
 .project-image-slider .bx-wrapper .bx-prev {
-    background: url("http://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/css/images/project_slider_left.png") no-repeat;
+    background: url("https://webthemez.com/demo/john-bootstrap-one-page-html5-free-resume-template/css/images/project_slider_left.png") no-repeat;
     background-size: 35px 65px;
     opacity: 0.3;
     left: -90px;
