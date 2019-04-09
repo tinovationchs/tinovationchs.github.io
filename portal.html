@@ -41,17 +41,17 @@
   var database = firebase.database();
   var problem1Ref = firebase.database().ref('problem1/');
   problem1Ref.on('child_added', function(data) {
-    addCodeTable1(data.key, data.val().code, data.val().time);
+    addCodeTable1(data.key, data.val().code, new Date(data.val().time));
   });
 
   var problem2Ref = firebase.database().ref('problem2/');
   problem2Ref.on('child_added', function(data) {
-    addCodeTable2(data.key, data.val().code, data.val().time);
+    addCodeTable2(data.key, data.val().code, new Date(data.val().time));
   });
 
   var problem3Ref = firebase.database().ref('problem3/');
   problem3Ref.on('child_added', function(data) {
-    addCodeTable3(data.key, data.val().code, data.val().time);
+    addCodeTable3(data.key, data.val().code, new Date(data.val().time));
   });
 
 
@@ -212,7 +212,7 @@ function addCodeTable1(name, code, time){
   var cell3 = row.insertCell(2);
   // Add some text to the new cells:
   cell1.innerHTML = name;
-  cell2.innerHTML = time;
+  cell2.innerHTML = time.toString().substring(0, 25);
   cell3.innerHTML = code;
 }
 
@@ -227,7 +227,7 @@ function addCodeTable2(name, code, time){
   var cell3 = row.insertCell(2);
   // Add some text to the new cells:
   cell1.innerHTML = name;
-  cell2.innerHTML = time;
+  cell2.innerHTML = time.toString().substring(0, 25);
   cell3.innerHTML = code;
 }
 
@@ -242,7 +242,7 @@ function addCodeTable3(name, code, time){
   var cell3 = row.insertCell(2);
   // Add some text to the new cells:
   cell1.innerHTML = name;
-  cell2.innerHTML = time;
+  cell2.innerHTML = time.toString().substring(0, 25);
   cell3.innerHTML = code;
 }
 </script>
