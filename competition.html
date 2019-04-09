@@ -23,6 +23,42 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/html5element.js"></script>
 <![endif]-->
+
+
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBjO4f13LP47rnRoVvQE2MDW7HORc-BG5U",
+    authDomain: "tinovationtinotechweek.firebaseapp.com",
+    databaseURL: "https://tinovationtinotechweek.firebaseio.com",
+    projectId: "tinovationtinotechweek",
+    storageBucket: "tinovationtinotechweek.appspot.com",
+    messagingSenderId: "290261929006"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  function writeDataProblem1(name, code) {
+    firebase.database().ref('problem1/' + name).set({
+      code: code
+    });
+  }
+
+    function writeDataProblem2(name, code) {
+      firebase.database().ref('problem2/' + name).set({
+        code: code
+      });
+    }
+
+      function writeDataProblem3(name, code) {
+        firebase.database().ref('problem3/' + name).set({
+          code: code
+        });
+      }
+</script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 
@@ -59,12 +95,16 @@
 <section id="aboutUs"><!--Aboutus-->
 <div class="inner_wrapper about-us aboutUs-container fadeInLeft animated wow">
   <div class="container">
-
+    <input type="text" id="name_text">
     <form>
         <textarea id="txt_area" class="TextArea password" name="textarea" maxlength="256"></textarea>
     </form>
-    <button>look</button>
-
+    <button>Submit</button>
+    <select id="selector">
+      <option value="1">Problem 1</option>
+      <option value="2">Problem 2</option>
+      <option value="3">Problem 3</option>
+    </select>
   </div>
   </div>
 </section>
@@ -118,7 +158,19 @@ $(".password").each(function (i, el) {
 })
 $("button").click(function () {
     alert($("#txt_area").val())
+    var e = document.getElementById("selector");
+    var strUser = e.options[e.selectedIndex].value;
+    console.log(strUser)
 
+    if(strUser==1){
+      writeDataProblem1($("#name_text").val(),$("#txt_area").val())
+    }
+    if(strUser==2){
+      writeDataProblem2($("#name_text").val(),$("#txt_area").val())
+    }
+    if(strUser==3){
+      writeDataProblem3($("#name_text").val(),$("#txt_area").val())
+    }
 
 })
 $('password').bind('copy paste',function(e) {
