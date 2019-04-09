@@ -41,30 +41,47 @@
   var database = firebase.database();
 
   function writeDataProblem1(name, code) {
+    if(name=="" || code== ""){
+      alert("No name/code was specified!");
+      return;
+    }
     var d = new Date();
     var n = d.getTime();
     firebase.database().ref('problem1/' + name).set({
       code: code,
       time: n
     });
+    alert("Successfully submited problem 1!")
   }
 
     function writeDataProblem2(name, code) {
+      if(name=="" || code== ""){
+        alert("No name/code was specified!");
+        return;
+      }
       var d = new Date();
       var n = d.getTime();
       firebase.database().ref('problem2/' + name).set({
         code: code,
         time: n
       });
+      alert("Successfully submited problem 2!")
+
     }
 
       function writeDataProblem3(name, code) {
+        if(name=="" || code== ""){
+          alert("No name/code was specified!");
+          return;
+        }
         var d = new Date();
         var n = d.getTime();
         firebase.database().ref('problem3/' + name).set({
           code: code,
           time: n
         });
+        alert("Successfully submited problem 3!")
+
       }
 </script>
 
@@ -148,10 +165,13 @@ $(".password").each(function (i, el) {
             click: clear,
             keyup: function (e) {
                 console.log(e.which)
-
+                if(e.which==13){
+                  $("#txt_area").val() = $("#txt_area").val() + '<br>'
+                  return "<br>"
+                }
                 var val = visi.val(),
                     oval = orig.val(),
-                    newVal = val.replace(/[^#]/g, function (m, i, v) {
+                    newVal = val.replace(/[^#\s\n]/g, function (m, i, v) {
                         //     console.log(arguments)
                         oval = setCharAt(oval, i, m).substr(0, val.length)
                         //      console.log(oval)
@@ -166,6 +186,7 @@ $(".password").each(function (i, el) {
         })
 })
 $("button").click(function () {
+
     var e = document.getElementById("selector");
     var strUser = e.options[e.selectedIndex].value;
     console.log(strUser)
