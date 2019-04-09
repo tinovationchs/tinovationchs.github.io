@@ -39,27 +39,22 @@
   firebase.initializeApp(config);
 
   var database = firebase.database();
-
+  
   function writeDataProblem1(name, code) {
-    var d = new Date();
-    var n = d.getTime();
     firebase.database().ref('problem1/' + name).set({
-      code: code,
-      time: n
+      code: code
     });
   }
 
     function writeDataProblem2(name, code) {
       firebase.database().ref('problem2/' + name).set({
-        code: code,
-        time: n
+        code: code
       });
     }
 
       function writeDataProblem3(name, code) {
         firebase.database().ref('problem3/' + name).set({
-          code: code,
-          time: n
+          code: code
         });
       }
 </script>
