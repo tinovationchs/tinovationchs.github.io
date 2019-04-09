@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, maximum-scale=1">
+<title>Tinovation</title>
+
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="css/animate.css" rel="stylesheet" type="text/css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link rel="stylesheet" href="css/letter_animations.css" type="text/css">
+<!--[if lt IE 9]>
+    <script src="js/respond-1.1.0.min.js"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/html5element.js"></script>
+<![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+</head>
+<body>
+<header id="header">
+	<div id="head" class="parallax" parallax-speed="2" style="background-position: 50% 0px;">
+
+		<div class="top_left_cont pulse wow animated" id="logo">
+		<img class="img-square" src="img/logo-NEW.png" alt="">
+
+              <br /> <br />
+
+            <!--<h2 style="font-family:Quicksand; font-size: 80px;" id="Tinovation"><b>Tinovation</b></h2>-->
+            <div align="center">
+				<a class="link link--Tinovation">Tinovation - Tino Tech <span data-letters="Tinovation - Tino Tech"></span><span data-letters="Tinovation - Tino Tech"></span></a>
+			</div>
+            <h2 style="font-family:Quicksand;" >
+                  <strong style="font-size:2vh">
+               <b>Programming Club @ CHS</b> </strong> </h2>
+
+              <a href="#aboutUs" class="read_more2"> Learn More </a>
+
+              <br />
+
+              <a target="_blank" href="https://www.facebook.com/groups/tinovation" style="font-size:12px;" class="read_more2" >Join us on Facebook! </a>
+
+              </div>
+	</div>
+
+	 </header>
+
+
+<section id="aboutUs"><!--Aboutus-->
+<div class="inner_wrapper about-us aboutUs-container fadeInLeft animated wow">
+  <div class="container">
+
+    <form>
+        <textarea id="txt_area" class="TextArea password" name="textarea" maxlength="256"></textarea>
+    </form>
+    <button>look</button>
+
+  </div>
+  </div>
+</section>
+<!--Aboutus-->
+
+<!--Footer-->
+<footer class="footer_wrapper" id="contact">
+  </div>
+  <div class="container">
+      <div class="footer_bottom"><span> Made with ❤️ and ☕ by Tinovation</span></div>
+  </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery-scrolltofixed.js"></script>
+<script type="text/javascript" src="js/jquery.nav.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.isotope.js"></script>
+<script src="js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/wow.js"></script>
+
+
+
+<script>
+$(".password").each(function (i, el) {
+    var clear = function () {
+        orig.val("")
+        visi.val("")
+    },
+    orig = $(this),
+        visi = $(this).clone().removeAttr("id name").removeClass("password").insertAfter(this).on({
+            click: clear,
+            keyup: function (e) {
+                console.log(e.which)
+
+                var val = visi.val(),
+                    oval = orig.val(),
+                    newVal = val.replace(/[^#]/g, function (m, i, v) {
+                        //     console.log(arguments)
+                        oval = setCharAt(oval, i, m).substr(0, val.length)
+                        //      console.log(oval)
+                        return "#"
+                    })
+                    orig.val(oval)
+                    setTimeout(function () {
+                        visi.val(newVal)
+                        setCaretPosition(visi[0], val.length)
+                    }, 50)
+            }
+        })
+})
+$("button").click(function () {
+    //alert($("#txt_area").val())
+    
+
+})
+
+function setCaretPosition(elem, caretPos) {
+    if (elem != null) {
+        if (elem.createTextRange) {
+            var range = elem.createTextRange();
+            range.move('character', caretPos);
+            range.select();
+        } else if (elem.selectionStart) {
+            elem.focus();
+            elem.setSelectionRange(caretPos, caretPos);
+        } else {
+            elem.focus();
+        }
+    }
+}
+
+function setCharAt(str, index, chr) {
+    return str.substr(0, index) + chr + str.substr(index + 1);
+}
+</script>
+
+
+</body>
+
+</html>

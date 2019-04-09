@@ -1,8 +1,8 @@
 /*
 Author URI: http://webthemez.com/
-Note: 
-Licence under Creative Commons Attribution 3.0 
-Do not remove the back-link in this web template 
+Note:
+Licence under Creative Commons Attribution 3.0
+Do not remove the back-link in this web template
 -------------------------------------------------------*/
 
 $(window).load(function() {
@@ -25,7 +25,7 @@ $(document).ready(function() {
         return false
 
     });
-	
+
     function resizeText() {
         var preferredWidth = 767;
         var displayWidth = window.innerWidth;
@@ -103,7 +103,7 @@ $(document).ready(function() {
 
         return columnNumb;
     }
-	
+
     function setColumns() {
         var winWidth = $(window).width(),
             columnNumb = splitColumns(),
