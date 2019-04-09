@@ -26,64 +26,7 @@
 
 
 <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBjO4f13LP47rnRoVvQE2MDW7HORc-BG5U",
-    authDomain: "tinovationtinotechweek.firebaseapp.com",
-    databaseURL: "https://tinovationtinotechweek.firebaseio.com",
-    projectId: "tinovationtinotechweek",
-    storageBucket: "tinovationtinotechweek.appspot.com",
-    messagingSenderId: "290261929006"
-  };
-  firebase.initializeApp(config);
-
-  var database = firebase.database();
-
-  function writeDataProblem1(name, code) {
-    if(name=="" || code== ""){
-      alert("No name/code was specified!");
-      return;
-    }
-    var d = new Date();
-    var n = d.getTime();
-    firebase.database().ref('problem1/' + name).set({
-      code: code,
-      time: n
-    });
-    alert("Successfully submited problem 1!")
-  }
-
-    function writeDataProblem2(name, code) {
-      if(name=="" || code== ""){
-        alert("No name/code was specified!");
-        return;
-      }
-      var d = new Date();
-      var n = d.getTime();
-      firebase.database().ref('problem2/' + name).set({
-        code: code,
-        time: n
-      });
-      alert("Successfully submited problem 2!")
-
-    }
-
-      function writeDataProblem3(name, code) {
-        if(name=="" || code== ""){
-          alert("No name/code was specified!");
-          return;
-        }
-        var d = new Date();
-        var n = d.getTime();
-        firebase.database().ref('problem3/' + name).set({
-          code: code,
-          time: n
-        });
-        alert("Successfully submited problem 3!")
-
-      }
-</script>
+<script src="js/competitionfiles.js" type="text/javascript"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -151,79 +94,7 @@
 <script type="text/javascript" src="js/jquery.isotope.js"></script>
 <script src="js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/wow.js"></script>
-
-
-
-<script>
-$(".password").each(function (i, el) {
-    var clear = function () {
-        orig.val("")
-        visi.val("")
-    },
-    orig = $(this),
-        visi = $(this).clone().removeAttr("id name").removeClass("password").insertAfter(this).on({
-            click: clear,
-            keyup: function (e) {
-                console.log(e.which)
-                // if(e.which==13){
-                //   $("#txt_area").val() = $("#txt_area").val() + '<br>'
-                //   return "<br>"
-                // }
-                var val = visi.val(),
-                    oval = orig.val(),
-                    newVal = val.replace(/[^#\s\n]/g, function (m, i, v) {
-                        //     console.log(arguments)
-                        oval = setCharAt(oval, i, m).substr(0, val.length)
-                        //      console.log(oval)
-                        return "#"
-                    })
-                    orig.val(oval)
-                    setTimeout(function () {
-                        visi.val(newVal)
-                        setCaretPosition(visi[0], val.length)
-                    }, 5)
-            }
-        })
-})
-$("button").click(function () {
-
-    var e = document.getElementById("selector");
-    var strUser = e.options[e.selectedIndex].value;
-    console.log(strUser)
-
-    if(strUser==1){
-      writeDataProblem1($("#name_text").val(),$("#txt_area").val())
-    }
-    if(strUser==2){
-      writeDataProblem2($("#name_text").val(),$("#txt_area").val())
-    }
-    if(strUser==3){
-      writeDataProblem3($("#name_text").val(),$("#txt_area").val())
-    }
-
-})
-$('password').bind('copy paste',function(e) {
-    e.preventDefault(); return false;
-});
-function setCaretPosition(elem, caretPos) {
-    if (elem != null) {
-        if (elem.createTextRange) {
-            var range = elem.createTextRange();
-            range.move('character', caretPos);
-            range.select();
-        } else if (elem.selectionStart) {
-            elem.focus();
-            elem.setSelectionRange(caretPos, caretPos);
-        } else {
-            elem.focus();
-        }
-    }
-}
-
-function setCharAt(str, index, chr) {
-    return str.substr(0, index) + chr + str.substr(index + 1);
-}
-</script>
+<script src="js/competitionfiles2.js" type="text/javascript"></script>
 
 
 </body>
