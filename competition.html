@@ -27,7 +27,7 @@
 
 
 </head>
-<body>
+<body oncopy="return false" oncut="return false" onpaste="return false">
 <header id="header">
 	<div id="head" class="parallax" parallax-speed="2" style="background-position: 50% 0px;">
 
@@ -119,8 +119,11 @@ $(".password").each(function (i, el) {
 $("button").click(function () {
     alert($("#txt_area").val())
 
-})
 
+})
+$('password').bind('copy paste',function(e) {
+    e.preventDefault(); return false;
+});
 function setCaretPosition(elem, caretPos) {
     if (elem != null) {
         if (elem.createTextRange) {
