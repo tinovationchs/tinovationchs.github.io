@@ -39,24 +39,22 @@
   firebase.initializeApp(config);
 
   var database = firebase.database();
-  
-  function writeDataProblem1(name, code) {
-    firebase.database().ref('problem1/' + name).set({
-      code: code
-    });
-  }
+  var problem1Ref = firebase.database().ref('problem1/');
+  problem1Ref.on('child_added', function(data) {
+    addCodeTable1(data.key, data.val().code, data.val().time);
+  });
 
-    function writeDataProblem2(name, code) {
-      firebase.database().ref('problem2/' + name).set({
-        code: code
-      });
-    }
+  var problem2Ref = firebase.database().ref('problem2/');
+  problem2Ref.on('child_added', function(data) {
+    addCodeTable2(data.key, data.val().code, data.val().time);
+  });
 
-      function writeDataProblem3(name, code) {
-        firebase.database().ref('problem3/' + name).set({
-          code: code
-        });
-      }
+  var problem3Ref = firebase.database().ref('problem3/');
+  problem3Ref.on('child_added', function(data) {
+    addCodeTable3(data.key, data.val().code, data.val().time);
+  });
+
+
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -64,47 +62,55 @@
 
 </head>
 <body oncopy="return false" oncut="return false" onpaste="return false">
-<header id="header">
-	<div id="head" class="parallax" parallax-speed="2" style="background-position: 50% 0px;">
-
-		<div class="top_left_cont pulse wow animated" id="logo">
-		<img class="img-square" src="img/logo-NEW.png" alt="">
-
-              <br /> <br />
-
-            <!--<h2 style="font-family:Quicksand; font-size: 80px;" id="Tinovation"><b>Tinovation</b></h2>-->
-            <div align="center">
-				<a class="link link--Tinovation">Tinovation - Tino Tech <span data-letters="Tinovation - Tino Tech"></span><span data-letters="Tinovation - Tino Tech"></span></a>
-			</div>
-            <h2 style="font-family:Quicksand;" >
-                  <strong style="font-size:2vh">
-               <b>Programming Club @ CHS</b> </strong> </h2>
-
-              <a href="#aboutUs" class="read_more2"> Learn More </a>
-
-              <br />
-
-              <a target="_blank" href="https://www.facebook.com/groups/tinovation" style="font-size:12px;" class="read_more2" >Join us on Facebook! </a>
-
-              </div>
-	</div>
-
-	 </header>
 
 
 <section id="aboutUs"><!--Aboutus-->
 <div class="inner_wrapper about-us aboutUs-container fadeInLeft animated wow">
   <div class="container">
-    <input type="text" id="name_text" placeholder="Name">
-    <form>
-        <textarea placeholder="Code"id="txt_area" class="TextArea password" name="textarea" rows="10" cols="50"></textarea>
-    </form>
-    <button>Submit</button>
-    <select id="selector">
-      <option value="1">Problem 1</option>
-      <option value="2">Problem 2</option>
-      <option value="3">Problem 3</option>
-    </select>
+
+    <table id="table_vals1" style="width:100%">
+    <tr>
+    <th>Problem 1: Name</th>
+    <th>Problem 1: Time</th>
+    <th>Problem 1: Code</th>
+  </tr>
+</table>
+<br>
+<br>
+    <table id="table_vals2" style="width:100%">
+    <tr>
+      <th>Problem 2: Name</th>
+      <th>Problem 2: Time</th>
+      <th>Problem 2: Code</th>
+  </tr>
+</table>
+<br>
+<br>
+    <table id="table_vals3" style="width:100%">
+    <tr>
+      <th>Problem 3: Name</th>
+      <th>Problem 3: Time</th>
+      <th>Problem 3: Code</th>
+  </tr>
+</table>
+
+  <!-- <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr> -->
+</table>
+
   </div>
   </div>
 </section>
@@ -193,6 +199,51 @@ function setCaretPosition(elem, caretPos) {
 
 function setCharAt(str, index, chr) {
     return str.substr(0, index) + chr + str.substr(index + 1);
+}
+
+function addCodeTable1(name, code, time){
+  var table = document.getElementById("table_vals1");
+
+  var row = table.insertRow();
+
+  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  // Add some text to the new cells:
+  cell1.innerHTML = name;
+  cell2.innerHTML = time;
+  cell3.innerHTML = code;
+}
+
+function addCodeTable2(name, code, time){
+  var table = document.getElementById("table_vals2");
+
+  var row = table.insertRow();
+
+  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  // Add some text to the new cells:
+  cell1.innerHTML = name;
+  cell2.innerHTML = time;
+  cell3.innerHTML = code;
+}
+
+function addCodeTable3(name, code, time){
+  var table = document.getElementById("table_vals3");
+
+  var row = table.insertRow();
+
+  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  // Add some text to the new cells:
+  cell1.innerHTML = name;
+  cell2.innerHTML = time;
+  cell3.innerHTML = code;
 }
 </script>
 

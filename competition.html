@@ -50,6 +50,8 @@
   }
 
     function writeDataProblem2(name, code) {
+      var d = new Date();
+      var n = d.getTime();
       firebase.database().ref('problem2/' + name).set({
         code: code,
         time: n
@@ -57,6 +59,8 @@
     }
 
       function writeDataProblem3(name, code) {
+        var d = new Date();
+        var n = d.getTime();
         firebase.database().ref('problem3/' + name).set({
           code: code,
           time: n
@@ -162,7 +166,6 @@ $(".password").each(function (i, el) {
         })
 })
 $("button").click(function () {
-    alert($("#txt_area").val())
     var e = document.getElementById("selector");
     var strUser = e.options[e.selectedIndex].value;
     console.log(strUser)
