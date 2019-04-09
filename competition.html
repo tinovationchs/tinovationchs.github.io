@@ -162,7 +162,7 @@ $(".password").each(function (i, el) {
     },
     orig = $(this),
         visi = $(this).clone().removeAttr("id name").removeClass("password").insertAfter(this).on({
-            // click: clear,
+            click: clear,
             keyup: function (e) {
                 console.log(e.which)
                 if(e.which==13){
