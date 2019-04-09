@@ -26,36 +26,8 @@
 
 
 <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBjO4f13LP47rnRoVvQE2MDW7HORc-BG5U",
-    authDomain: "tinovationtinotechweek.firebaseapp.com",
-    databaseURL: "https://tinovationtinotechweek.firebaseio.com",
-    projectId: "tinovationtinotechweek",
-    storageBucket: "tinovationtinotechweek.appspot.com",
-    messagingSenderId: "290261929006"
-  };
-  firebase.initializeApp(config);
+<script src="js/portalfiles.js" type="text/javascript"></script>
 
-  var database = firebase.database();
-  var problem1Ref = firebase.database().ref('problem1/');
-  problem1Ref.on('child_added', function(data) {
-    addCodeTable1(data.key, data.val().code, new Date(data.val().time));
-  });
-
-  var problem2Ref = firebase.database().ref('problem2/');
-  problem2Ref.on('child_added', function(data) {
-    addCodeTable2(data.key, data.val().code, new Date(data.val().time));
-  });
-
-  var problem3Ref = firebase.database().ref('problem3/');
-  problem3Ref.on('child_added', function(data) {
-    addCodeTable3(data.key, data.val().code, new Date(data.val().time));
-  });
-
-
-</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -134,118 +106,7 @@
 
 
 
-<script>
-$(".password").each(function (i, el) {
-    var clear = function () {
-        orig.val("")
-        visi.val("")
-    },
-    orig = $(this),
-        visi = $(this).clone().removeAttr("id name").removeClass("password").insertAfter(this).on({
-            click: clear,
-            keyup: function (e) {
-                console.log(e.which)
-
-                var val = visi.val(),
-                    oval = orig.val(),
-                    newVal = val.replace(/[^#]/g, function (m, i, v) {
-                        //     console.log(arguments)
-                        oval = setCharAt(oval, i, m).substr(0, val.length)
-                        //      console.log(oval)
-                        return "#"
-                    })
-                    orig.val(oval)
-                    setTimeout(function () {
-                        visi.val(newVal)
-                        setCaretPosition(visi[0], val.length)
-                    }, 5)
-            }
-        })
-})
-$("button").click(function () {
-    alert($("#txt_area").val())
-    var e = document.getElementById("selector");
-    var strUser = e.options[e.selectedIndex].value;
-    console.log(strUser)
-
-    if(strUser==1){
-      writeDataProblem1($("#name_text").val(),$("#txt_area").val())
-    }
-    if(strUser==2){
-      writeDataProblem2($("#name_text").val(),$("#txt_area").val())
-    }
-    if(strUser==3){
-      writeDataProblem3($("#name_text").val(),$("#txt_area").val())
-    }
-
-})
-$('password').bind('copy paste',function(e) {
-    e.preventDefault(); return false;
-});
-function setCaretPosition(elem, caretPos) {
-    if (elem != null) {
-        if (elem.createTextRange) {
-            var range = elem.createTextRange();
-            range.move('character', caretPos);
-            range.select();
-        } else if (elem.selectionStart) {
-            elem.focus();
-            elem.setSelectionRange(caretPos, caretPos);
-        } else {
-            elem.focus();
-        }
-    }
-}
-
-function setCharAt(str, index, chr) {
-    return str.substr(0, index) + chr + str.substr(index + 1);
-}
-
-function addCodeTable1(name, code, time){
-  var table = document.getElementById("table_vals1");
-
-  var row = table.insertRow();
-
-  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  // Add some text to the new cells:
-  cell1.innerHTML = name;
-  cell2.innerHTML = time.toString().substring(0, 25);
-  cell3.innerHTML = code;
-}
-
-function addCodeTable2(name, code, time){
-  var table = document.getElementById("table_vals2");
-
-  var row = table.insertRow();
-  code.replace()
-  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  // Add some text to the new cells:
-  cell1.innerHTML = name;
-  cell2.innerHTML = time.toString().substring(0, 25);
-  cell3.innerHTML = code;
-}
-
-function addCodeTable3(name, code, time){
-  var table = document.getElementById("table_vals3");
-
-  var row = table.insertRow();
-
-  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  // Add some text to the new cells:
-  cell1.innerHTML = name;
-  cell2.innerHTML = time.toString().substring(0, 25);
-  cell3.innerHTML = code;
-}
-</script>
+<script src="js/portalfiles2.js" type="text/javascript"></script>
 
 
 </body>
