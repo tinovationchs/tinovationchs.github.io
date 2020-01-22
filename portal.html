@@ -27,12 +27,6 @@
 
 <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
 <script>
-import java.util.ArrayList; // import the ArrayList class
-
-ArrayList<String> problem1 = new ArrayList<String>(); // Create an ArrayList object
-ArrayList<String> problem2 = new ArrayList<String>(); // Create an ArrayList object
-ArrayList<String> problem3 = new ArrayList<String>(); // Create an ArrayList object
-
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyBjO4f13LP47rnRoVvQE2MDW7HORc-BG5U",
@@ -47,7 +41,6 @@ ArrayList<String> problem3 = new ArrayList<String>(); // Create an ArrayList obj
   var database = firebase.database();
   var problem1Ref = firebase.database().ref('problem1/');
   problem1Ref.on('child_added', function(data) {
-    problem1
     addCodeTable1(data.key, data.val().code, new Date(data.val().time));
   });
 
@@ -66,7 +59,26 @@ ArrayList<String> problem3 = new ArrayList<String>(); // Create an ArrayList obj
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+<style>
+table {
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
 
+th {
+  cursor: pointer;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+</style>
 </head>
 <body>
 
@@ -79,7 +91,7 @@ ArrayList<String> problem3 = new ArrayList<String>(); // Create an ArrayList obj
     <tr>
     <th onclick="sortTable1(0)">Problem 1: Name</th>
     <th onclick="sortTable1(1)">Problem 1: Time</th>
-    <th onclick="sortTable1(1)">Problem 1: Code</th>
+    <th onclick="sortTable1(2)">Problem 1: Code</th>
   </tr>
 </table>
 <br>
@@ -142,6 +154,7 @@ ArrayList<String> problem3 = new ArrayList<String>(); // Create an ArrayList obj
 
 
 <script>
+
 function setCharAt(str, index, chr) {
     return str.substr(0, index) + chr + str.substr(index + 1);
 }
@@ -193,9 +206,11 @@ function addCodeTable3(name, code, time){
 
 
 
+
+
 function sortTable1(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("table_vals2");
+  table = document.getElementById("table_vals1");
   switching = true;
   //Set the sorting direction to ascending:
   dir = "asc";
@@ -355,7 +370,6 @@ function sortTable3(n) {
     }
   }
 }
-
 
 </script>
 
