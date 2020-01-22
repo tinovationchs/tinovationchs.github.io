@@ -27,6 +27,12 @@
 
 <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
 <script>
+import java.util.ArrayList; // import the ArrayList class
+
+ArrayList<String> problem1 = new ArrayList<String>(); // Create an ArrayList object
+ArrayList<String> problem2 = new ArrayList<String>(); // Create an ArrayList object
+ArrayList<String> problem3 = new ArrayList<String>(); // Create an ArrayList object
+
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyBjO4f13LP47rnRoVvQE2MDW7HORc-BG5U",
@@ -41,6 +47,7 @@
   var database = firebase.database();
   var problem1Ref = firebase.database().ref('problem1/');
   problem1Ref.on('child_added', function(data) {
+    problem1
     addCodeTable1(data.key, data.val().code, new Date(data.val().time));
   });
 
@@ -70,27 +77,27 @@
 
     <table id="table_vals1" style="width:100%">
     <tr>
-    <th>Problem 1: Name</th>
-    <th>Problem 1: Time</th>
-    <th>Problem 1: Code</th>
+    <th onclick="sortTable1(0)">Problem 1: Name</th>
+    <th onclick="sortTable1(1)">Problem 1: Time</th>
+    <th onclick="sortTable1(1)">Problem 1: Code</th>
   </tr>
 </table>
 <br>
 <br>
     <table id="table_vals2" style="width:100%">
     <tr>
-      <th>Problem 2: Name</th>
-      <th>Problem 2: Time</th>
-      <th>Problem 2: Code</th>
+      <th onclick="sortTable2(0)">Problem 2: Name</th>
+      <th onclick="sortTable2(1)">Problem 2: Time</th>
+      <th onclick="sortTable2(2)">Problem 2: Code</th>
   </tr>
 </table>
 <br>
 <br>
     <table id="table_vals3" style="width:100%">
     <tr>
-      <th>Problem 3: Name</th>
-      <th>Problem 3: Time</th>
-      <th>Problem 3: Code</th>
+      <th onclick="sortTable3(0)">Problem 3: Name</th>
+      <th onclick="sortTable3(1)">Problem 3: Time</th>
+      <th onclick="sortTable3(2)">Problem 3: Code</th>
   </tr>
 </table>
 
@@ -135,68 +142,6 @@
 
 
 <script>
-$(".password").each(function (i, el) {
-    var clear = function () {
-        orig.val("")
-        visi.val("")
-    },
-    orig = $(this),
-        visi = $(this).clone().removeAttr("id name").removeClass("password").insertAfter(this).on({
-            click: clear,
-            keyup: function (e) {
-                console.log(e.which)
-
-                var val = visi.val(),
-                    oval = orig.val(),
-                    newVal = val.replace(/[^#]/g, function (m, i, v) {
-                        //     console.log(arguments)
-                        oval = setCharAt(oval, i, m).substr(0, val.length)
-                        //      console.log(oval)
-                        return "#"
-                    })
-                    orig.val(oval)
-                    setTimeout(function () {
-                        visi.val(newVal)
-                        setCaretPosition(visi[0], val.length)
-                    }, 5)
-            }
-        })
-})
-$("button").click(function () {
-    alert($("#txt_area").val())
-    var e = document.getElementById("selector");
-    var strUser = e.options[e.selectedIndex].value;
-    console.log(strUser)
-
-    if(strUser==1){
-      writeDataProblem1($("#name_text").val(),$("#txt_area").val())
-    }
-    if(strUser==2){
-      writeDataProblem2($("#name_text").val(),$("#txt_area").val())
-    }
-    if(strUser==3){
-      writeDataProblem3($("#name_text").val(),$("#txt_area").val())
-    }
-
-})
-$('password').bind('copy paste',function(e) {
-    e.preventDefault(); return false;
-});
-function setCaretPosition(elem, caretPos) {
-    if (elem != null) {
-        if (elem.createTextRange) {
-            var range = elem.createTextRange();
-            range.move('character', caretPos);
-            range.select();
-        } else if (elem.selectionStart) {
-            elem.focus();
-            elem.setSelectionRange(caretPos, caretPos);
-        } else {
-            elem.focus();
-        }
-    }
-}
-
 function setCharAt(str, index, chr) {
     return str.substr(0, index) + chr + str.substr(index + 1);
 }
@@ -245,6 +190,173 @@ function addCodeTable3(name, code, time){
   cell2.innerHTML = time.toString().substring(0, 25);
   cell3.innerHTML = code;
 }
+
+
+
+function sortTable1(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("table_vals2");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc";
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+function sortTable2(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("table_vals2");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc";
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+function sortTable3(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("table_vals3");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc";
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+
 </script>
 
 

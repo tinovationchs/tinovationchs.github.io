@@ -87,43 +87,26 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-
+<style>
+    ::selection {
+        color: none;
+        background: none;
+    }
+    /* For Mozilla Firefox */
+    ::-moz-selection {
+        color: none;
+        background: none;
+    }
+</style>
 </head>
 <body oncopy="return false" oncut="return false" onpaste="return false">
-<header id="header">
-	<div id="head" class="parallax" parallax-speed="2" style="background-position: 50% 0px;">
-
-		<div class="top_left_cont pulse wow animated" id="logo">
-		<img class="img-square" src="img/logo-NEW.png" alt="">
-
-              <br /> <br />
-
-            <!--<h2 style="font-family:Quicksand; font-size: 80px;" id="Tinovation"><b>Tinovation</b></h2>-->
-            <div align="center">
-				<a class="link link--Tinovation">Tinovation - Tino Tech <span data-letters="Tinovation - Tino Tech"></span><span data-letters="Tinovation - Tino Tech"></span></a>
-			</div>
-            <h2 style="font-family:Quicksand;" >
-                  <strong style="font-size:2vh">
-               <b>Programming Club @ CHS</b> </strong> </h2>
-
-              <a href="#aboutUs" class="read_more2"> Learn More </a>
-
-              <br />
-
-              <a target="_blank" href="https://www.facebook.com/groups/tinovation" style="font-size:12px;" class="read_more2" >Join us on Facebook! </a>
-
-              </div>
-	</div>
-
-	 </header>
-
 
 <section id="aboutUs"><!--Aboutus-->
 <div class="inner_wrapper about-us aboutUs-container fadeInLeft animated wow">
   <div class="container">
     <input type="text" id="name_text" placeholder="Name">
     <form>
-        <textarea placeholder="Code"id="txt_area" class="TextArea password" name="textarea" rows="10" cols="50"></textarea>
+        <textarea style="color:white" placeholder="Code"id="txt_area" class="TextArea" name="textarea" rows="10" cols="50"></textarea>
     </form>
     <button>Submit</button>
     <select id="selector">
@@ -165,10 +148,14 @@ $(".password").each(function (i, el) {
             click: clear,
             keyup: function (e) {
                 console.log(e.which)
-                // if(e.which==13){
-                //   $("#txt_area").val() = $("#txt_area").val() + '<br>'
-                //   return "<br>"
-                // }
+                if(e.which==13){
+                  $("#txt_area").val() = $("#txt_area").val() + '\n'
+                  return "\n"
+                }
+                if(e.which==32){
+                  $("#txt_area").val() = $("#txt_area").val() + '\s'
+                  return " "
+                }
                 var val = visi.val(),
                     oval = orig.val(),
                     newVal = val.replace(/[^#\s\n]/g, function (m, i, v) {
@@ -205,24 +192,24 @@ $("button").click(function () {
 $('password').bind('copy paste',function(e) {
     e.preventDefault(); return false;
 });
-function setCaretPosition(elem, caretPos) {
-    if (elem != null) {
-        if (elem.createTextRange) {
-            var range = elem.createTextRange();
-            range.move('character', caretPos);
-            range.select();
-        } else if (elem.selectionStart) {
-            elem.focus();
-            elem.setSelectionRange(caretPos, caretPos);
-        } else {
-            elem.focus();
-        }
-    }
-}
-
-function setCharAt(str, index, chr) {
-    return str.substr(0, index) + chr + str.substr(index + 1);
-}
+// function setCaretPosition(elem, caretPos) {
+//     if (elem != null) {
+//         if (elem.createTextRange) {
+//             var range = elem.createTextRange();
+//             range.move('character', caretPos);
+//             range.select();
+//         } else if (elem.selectionStart) {
+//             elem.focus();
+//             elem.setSelectionRange(caretPos, caretPos);
+//         } else {
+//             elem.focus();
+//         }
+//     }
+// }
+//
+// function setCharAt(str, index, chr) {
+//     return str.substr(0, index) + chr + str.substr(index + 1);
+// }
 </script>
 
 
