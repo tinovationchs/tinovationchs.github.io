@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, maximum-scale=1">
-<title>Tinovation</title>
+<title>Coding Competition | Tinovation</title>
 
 <link rel="manifest" href="/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
@@ -18,71 +18,50 @@
 <link href="css/animate.css" rel="stylesheet" type="text/css">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <link rel="stylesheet" href="css/letter_animations.css" type="text/css">
-<!--[if lt IE 9]>
-    <script src="js/respond-1.1.0.min.js"></script>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/html5element.js"></script>
-<![endif]-->
-
-
+	
 <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+	
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
+</script>
+
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBjO4f13LP47rnRoVvQE2MDW7HORc-BG5U",
-    authDomain: "tinovationtinotechweek.firebaseapp.com",
-    databaseURL: "https://tinovationtinotechweek.firebaseio.com",
-    projectId: "tinovationtinotechweek",
-    storageBucket: "tinovationtinotechweek.appspot.com",
-    messagingSenderId: "290261929006"
-  };
-  firebase.initializeApp(config);
+    const firebaseConfig = {
+        apiKey: "AIzaSyDjLfxA59yXSjFogJhygQ5lekQbCjf7wOg",
+        authDomain: "tinovation-blind-cc-ae74a.firebaseapp.com",
+        projectId: "tinovation-blind-cc-ae74a",
+        databaseURL: "https://tinovation-blind-cc-ae74a-default-rtdb.firebaseio.com/",
+        storageBucket: "tinovation-blind-cc-ae74a.appspot.com",
+        messagingSenderId: "657112643895",
+        appId: "1:657112643895:web:22dd44c0d4bb05ec4d42b2"
+    };
 
-  var database = firebase.database();
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
 
-  function writeDataProblem1(name, code) {
-    if(name=="" || code== ""){
-      alert("No name/code was specified!");
-      return;
-    }
-    var d = new Date();
-    var n = d.getTime();
-    firebase.database().ref('problem1/' + name).set({
-      code: code,
-      time: n
-    });
-    alert("Successfully submited problem 1!")
-  }
-
-    function writeDataProblem2(name, code) {
-      if(name=="" || code== ""){
-        alert("No name/code was specified!");
-        return;
-      }
-      var d = new Date();
-      var n = d.getTime();
-      firebase.database().ref('problem2/' + name).set({
-        code: code,
-        time: n
-      });
-      alert("Successfully submited problem 2!")
-
-    }
-
-      function writeDataProblem3(name, code) {
+    function writeDataProblem(name, code, problemNum) {
         if(name=="" || code== ""){
-          alert("No name/code was specified!");
-          return;
+            alert("No name/code was specified!");
+            return;
         }
-        var d = new Date();
-        var n = d.getTime();
-        firebase.database().ref('problem3/' + name).set({
-          code: code,
-          time: n
-        });
-        alert("Successfully submited problem 3!")
 
-      }
+        var d = new Date();
+
+        firebase.database().ref('problem' + problemNum + '/' + name).set({
+            code: code,
+            time: d.toString()
+        });
+
+        document.getElementById("txt_area").value = '';
+
+        alert("Successfully submited problem " + problemNum + "!")
+    }
+
+    function updateCharacterCount() {
+        document.getElementById("char_count").innerHTML = "Character Count: " + document.getElementById("txt_area").value.length;
+    }
+
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -98,33 +77,32 @@
         background: none;
     }
 </style>
-</head>
+
 <body oncopy="return false" oncut="return false" onpaste="return false">
-
-<section id="aboutUs"><!--Aboutus-->
-<div class="inner_wrapper about-us aboutUs-container fadeInLeft animated wow">
-  <div class="container">
-    <input type="text" id="name_text" placeholder="Name">
-    <form>
-        <textarea style="color:white" placeholder="Code"id="txt_area" class="TextArea" name="textarea" rows="10" cols="50"></textarea>
-    </form>
-    <button>Submit</button>
-    <select id="selector">
-      <option value="1">Problem 1</option>
-      <option value="2">Problem 2</option>
-      <option value="3">Problem 3</option>
-    </select>
-  </div>
-  </div>
-</section>
-<!--Aboutus-->
-
-<!--Footer-->
-<footer class="footer_wrapper" id="contact">
-  </div>
-  <div class="container">
-      <div class="footer_bottom"><span> Made with ❤️ and ☕ by Tinovation</span></div>
-  </div>
+	
+	<section id="aboutUs"><!--Aboutus-->
+		<div class="inner_wrapper about-us aboutUs-container fadeInLeft animated wow">
+			<div class="container">
+				<input type="text" id="name_text" placeholder="Name">
+				<form>
+					<textarea style="color:white" placeholder="Code" id="txt_area" class="TextArea" name="textarea" rows="10" cols="50" onkeyup="updateCharacterCount()"></textarea>
+					<p id="char_count">Character Count: 0</p>
+				</form>
+				<button>Submit</button>
+				<select id="selector">
+					<option value="1">Problem 1</option>
+					<option value="2">Problem 2</option>
+					<option value="3">Problem 3</option>
+				</select>
+			</div>
+		</div>
+	</section>
+	
+	<footer class="footer_wrapper" id="contact">
+	</div>
+	<!-- <div class="container">
+		<div class="footer_bottom"><span> Made with ❤️ and ☕ by Tinovation</span></div>
+	</div> -->
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -138,81 +116,58 @@
 
 
 <script>
-$(".password").each(function (i, el) {
-    var clear = function () {
-        orig.val("")
-        visi.val("")
-    },
-    orig = $(this),
-        visi = $(this).clone().removeAttr("id name").removeClass("password").insertAfter(this).on({
-            click: clear,
-            keyup: function (e) {
-                console.log(e.which)
-                if(e.which==13){
-                  $("#txt_area").val() = $("#txt_area").val() + '\n'
-                  return "\n"
-                }
-                if(e.which==32){
-                  $("#txt_area").val() = $("#txt_area").val() + '\s'
-                  return " "
-                }
-                var val = visi.val(),
-                    oval = orig.val(),
-                    newVal = val.replace(/[^#\s\n]/g, function (m, i, v) {
-                        //     console.log(arguments)
-                        oval = setCharAt(oval, i, m).substr(0, val.length)
-                        //      console.log(oval)
-                        return "#"
-                    })
-                    orig.val(oval)
-                    setTimeout(function () {
-                        visi.val(newVal)
-                        setCaretPosition(visi[0], val.length)
-                    }, 5)
-            }
-        })
-})
-$("button").click(function () {
+	$(".password").each(function (i, el) {
+		var clear = function () {
+			orig.val("")
+			visi.val("")
+		},
+		orig = $(this),
+		visi = $(this).clone().removeAttr("id name").removeClass("password").insertAfter(this).on({
+			click: clear,
+			keyup: function (e) {
+				console.log(e.which)
+				if(e.which==13){
+					$("#txt_area").val() = $("#txt_area").val() + '\n'
+					return "\n"
+				}
+				if(e.which==32){
+					$("#txt_area").val() = $("#txt_area").val() + '\s'
+					return " "
+				}
+				var val = visi.val(),
+				oval = orig.val(),
+				newVal = val.replace(/[^#\s\n]/g, function (m, i, v) {
+					//     console.log(arguments)
+					oval = setCharAt(oval, i, m).substr(0, val.length)
+					//      console.log(oval)
+					return "#"
+				})
+				orig.val(oval)
+				setTimeout(function () {
+					visi.val(newVal)
+					setCaretPosition(visi[0], val.length)
+				}, 5)
+			}
+		})
+	})
 
-    var e = document.getElementById("selector");
-    var strUser = e.options[e.selectedIndex].value;
-    console.log(strUser)
-
-    if(strUser==1){
-      writeDataProblem1($("#name_text").val(),$("#txt_area").val())
-    }
-    if(strUser==2){
-      writeDataProblem2($("#name_text").val(),$("#txt_area").val())
-    }
-    if(strUser==3){
-      writeDataProblem3($("#name_text").val(),$("#txt_area").val())
-    }
-
-})
-$('password').bind('copy paste',function(e) {
-    e.preventDefault(); return false;
-});
-// function setCaretPosition(elem, caretPos) {
-//     if (elem != null) {
-//         if (elem.createTextRange) {
-//             var range = elem.createTextRange();
-//             range.move('character', caretPos);
-//             range.select();
-//         } else if (elem.selectionStart) {
-//             elem.focus();
-//             elem.setSelectionRange(caretPos, caretPos);
-//         } else {
-//             elem.focus();
-//         }
-//     }
-// }
-//
-// function setCharAt(str, index, chr) {
-//     return str.substr(0, index) + chr + str.substr(index + 1);
-// }
+	$("button").click(function(){
+		var e = document.getElementById("selector");
+		var strUser = e.options[e.selectedIndex].value;
+		console.log(strUser)
+		
+		if (strUser >= 1 && strUser <= 3) {
+			writeDataProblem($("#name_text").val(), $("#txt_area").val(), strUser)
+		}
+	})
+	
+	$('password').bind('copy paste',function(e) {
+		e.preventDefault(); return false;
+	});
 </script>
-
-
+						
+						
 </body>
-
+					
 </html>
+					
