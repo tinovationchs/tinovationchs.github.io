@@ -18,41 +18,43 @@
 <link href="css/animate.css" rel="stylesheet" type="text/css">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <link rel="stylesheet" href="css/letter_animations.css" type="text/css">
-<!--[if lt IE 9]>
-    <script src="js/respond-1.1.0.min.js"></script>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/html5element.js"></script>
-<![endif]-->
-
 
 <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+	
+<script type="module">
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+	import { getDatabase } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
+</script>
+
+
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBjO4f13LP47rnRoVvQE2MDW7HORc-BG5U",
-    authDomain: "tinovationtinotechweek.firebaseapp.com",
-    databaseURL: "https://tinovationtinotechweek.firebaseio.com",
-    projectId: "tinovationtinotechweek",
-    storageBucket: "tinovationtinotechweek.appspot.com",
-    messagingSenderId: "290261929006"
-  };
-  firebase.initializeApp(config);
+	const firebaseConfig = {
+		apiKey: "AIzaSyDjLfxA59yXSjFogJhygQ5lekQbCjf7wOg",
+		authDomain: "tinovation-blind-cc-ae74a.firebaseapp.com",
+		projectId: "tinovation-blind-cc-ae74a",
+		databaseURL: "https://tinovation-blind-cc-ae74a-default-rtdb.firebaseio.com/",
+		storageBucket: "tinovation-blind-cc-ae74a.appspot.com",
+		messagingSenderId: "657112643895",
+		appId: "1:657112643895:web:22dd44c0d4bb05ec4d42b2"
+	};
 
-  var database = firebase.database();
-  var problem1Ref = firebase.database().ref('problem1/');
-  problem1Ref.on('child_added', function(data) {
-    addCodeTable1(data.key, data.val().code, new Date(data.val().time));
-  });
+	// Initialize Firebase
+	const app = firebase.initializeApp(firebaseConfig);
 
-  var problem2Ref = firebase.database().ref('problem2/');
-  problem2Ref.on('child_added', function(data) {
-    addCodeTable2(data.key, data.val().code, new Date(data.val().time));
-  });
+	var problem1Ref = firebase.database().ref('problem1/');
+	problem1Ref.on('child_added', function(data) {
+		addCodeTable1(data.key, data.val().code, new Date(data.val().time));
+	});
 
-  var problem3Ref = firebase.database().ref('problem3/');
-  problem3Ref.on('child_added', function(data) {
-    addCodeTable3(data.key, data.val().code, new Date(data.val().time));
-  });
+	var problem2Ref = firebase.database().ref('problem2/');
+	problem2Ref.on('child_added', function(data) {
+		addCodeTable2(data.key, data.val().code, new Date(data.val().time));
+	});
+
+	var problem3Ref = firebase.database().ref('problem3/');
+	problem3Ref.on('child_added', function(data) {
+		addCodeTable3(data.key, data.val().code, new Date(data.val().time));
+	});
 
 
 </script>
@@ -60,24 +62,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <style>
-table {
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
+	table {
+		border-spacing: 0;
+		width: 100%;
+		border: 1px solid #ddd;
+	}
 
-th {
-  cursor: pointer;
-}
+	th {
+		
+	}
 
-th, td {
-  text-align: left;
-  padding: 16px;
-}
+	th, td {
+		text-align: left;
+		padding: 16px;
+	}
 
-tr:nth-child(even) {
-  background-color: #f2f2f2
-}
+	tr:nth-child(even) {
+		background-color: #f2f2f2
+	}
 </style>
 </head>
 <body>
@@ -113,21 +115,6 @@ tr:nth-child(even) {
   </tr>
 </table>
 
-  <!-- <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Age</th>
-  </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-  </tr> -->
 </table>
 
   </div>
@@ -138,9 +125,9 @@ tr:nth-child(even) {
 <!--Footer-->
 <footer class="footer_wrapper" id="contact">
   </div>
-  <div class="container">
+  <!-- <div class="container">
       <div class="footer_bottom"><span> Made with ❤️ and ☕ by Tinovation</span></div>
-  </div>
+  </div> -->
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
