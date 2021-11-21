@@ -96,6 +96,7 @@
 					<option value="1">Problem 1</option>
 					<option value="2">Problem 2</option>
 					<option value="3">Problem 3</option>
+					<option value="4">Problem 4</option>
 				</select>
 			</div>
 		</div>
@@ -159,7 +160,7 @@
 		var strUser = e.options[e.selectedIndex].value;
 		console.log(strUser)
 		
-		if (strUser >= 1 && strUser <= 3) {
+		if (strUser >= 1 && strUser <= 4) {
 			writeDataProblem($("#name_text").val(), $("#txt_area").val(), strUser)
 		}
 	})
